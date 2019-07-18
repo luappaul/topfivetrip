@@ -1,0 +1,12 @@
+.destination-result-container {
+  display: flex;
+  justify-content: center;
+}
+
+.destination-result {
+  width: 20%;
+}
+
+.destination-result img {
+  max-width: 50%;
+}

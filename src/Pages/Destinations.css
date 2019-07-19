@@ -1,15 +1,28 @@
 .btn-container {
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
 }
 
 .btn-containee {
   margin: 10px;
-  width: 30%;
+  width: 100%;
 }
 
 .btn-containee button {
   width: 100%;
+}
+
+.destination-container {
+  width: 30%;
+
+  margin: 5px;
+  height: 400px;
+}
+
+.dest-icon img {
+  width: 90%;
+  height: 100%;
 }

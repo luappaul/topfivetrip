@@ -13,7 +13,6 @@ class UserFavoriteDest extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="destination-result-container">
         {this.props.destinations.map((one, index) => {
@@ -26,6 +25,9 @@ class UserFavoriteDest extends Component {
                 />
               </div>
               <div>{one.destinations.toString()}</div>
+              <button onClick={() => this.props.handleDelete(one._id)}>
+                x
+              </button>
             </div>
           );
         })}

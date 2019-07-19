@@ -7,7 +7,7 @@ import DestinationForm from "../Component/DestinationForm";
 // Geocode.setApiKey("AIzaSyD0DeMLqoAnFuvMokwgI_xkcN4f_KwuCLg");
 // create a geolocated and then geocode the lat /long
 
-class Home extends React.Component {
+class Travel extends React.Component {
   render() {
     return (
       <div>
@@ -18,4 +18,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Travel;

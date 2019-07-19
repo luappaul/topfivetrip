@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import NavBar from "../Component/Navbar";
 import SearchDestination from "../Component/SearchDestination";
+import barcelona from "../img/barcelona.jpg";
 
 import "./Destinations.css";
 import { ButtonToolbar, Button } from "react-bootstrap";
@@ -19,12 +20,12 @@ class Destination extends Component {
 
     const dataToSend = evt.target.value;
     axios
-      .post(`http://localhost:4000/api/destinations`, {
+      .post(`${process.env.REACT_APP_BACKEND}/api/destinations`, {
         destinations: dataToSend
       })
       .then(res => {
         axios
-          .get("http://localhost:4000/api/destinations")
+          .get(`${process.env.REACT_APP_BACKEND}/api/destinations`)
           .then(res =>
             this.setState({
               userResults: res.data
@@ -37,7 +38,7 @@ class Destination extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/api/destinations")
+      .get(`${process.env.REACT_APP_BACKEND}/api/destinations`)
       .then(res =>
         this.setState({
           userResults: res.data
@@ -45,6 +46,19 @@ class Destination extends Component {
       )
       .catch(err => console.log(err));
   }
+
+  handleDelete = id => {
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND}/api/destinations/` + id)
+      .then(res => {
+        const filtered = this.state.userResults.filter(dest => {
+          console.log(dest._id, id);
+          return dest._id !== id;
+        });
+        this.setState({ userResults: filtered });
+      })
+      .catch(err => console.log(err));
+  };
 
   handleTitle = evt => {
     this.setState(
@@ -60,7 +74,7 @@ class Destination extends Component {
 
   getData = () => {
     axios
-      .get(`http://localhost:4000/api/cities/${this.state.city}`)
+      .get(`${process.env.REACT_APP_BACKEND}/api/cities/${this.state.city}`)
       .then(res => this.setState({ result: res.data }))
       .catch(err => console.log(err));
   };
@@ -70,25 +84,33 @@ class Destination extends Component {
       <div className="destination-page">
         <NavBar />
         <br />
-        <UserFavoriteDest destinations={this.state.userResults} />
+        <UserFavoriteDest
+          destinations={this.state.userResults}
+          handleDelete={this.handleDelete}
+        />
         <br />
         <SearchDestination onChange={this.handleTitle} />
         <br />
 
         <div className="btn-container">
-          {this.state.result.map((one, index) => {
+          {this.state.result.slice(0, 10).map((one, index) => {
             return (
-              <div key={index} className="btn-containee">
-                <ButtonToolbar>
-                  <Button
-                    variant="outline-primary"
-                    index={index}
-                    value={one.City}
-                    onClick={this.handleClick}
-                  >
-                    {one.City}, {one.IATA}
-                  </Button>
-                </ButtonToolbar>
+              <div className="destination-container">
+                <div key={index} className="btn-containee">
+                  <ButtonToolbar>
+                    <Button
+                      variant="outline-primary"
+                      index={index}
+                      value={one.City}
+                      onClick={this.handleClick}
+                    >
+                      {one.City}, {one.IATA}
+                    </Button>
+                  </ButtonToolbar>
+                  <div className="dest-icon">
+                    <img src={barcelona} alt="logo" />
+                  </div>
+                </div>
               </div>
             );
           })}

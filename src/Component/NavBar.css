@@ -1,4 +1,5 @@
-.mr-auto a {
+.mr-auto a,
+span {
   padding: 10px;
   color: white;
 }

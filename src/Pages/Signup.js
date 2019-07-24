@@ -47,7 +47,7 @@ export default class Signup extends Component {
       .post("/signup", this.state)
       .then(serverRes => {
         console.log(this.props);
-        this.props.history.push("/destinations");
+        this.props.history.push("/location");
         console.log(serverRes);
       })
       .catch(serverErr => console.error(serverErr));

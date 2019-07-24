@@ -7,7 +7,7 @@ import "./App.css";
 
 //AUTH
 import ProtectedRoute from "./auth/Protectedroutes";
-import MyFunctionalComponent from "./Pages/MyFunctionalComponent";
+
 //ROUTES
 import Travel from "./Pages/Travel";
 import Homepage from "./Pages/Homepage";

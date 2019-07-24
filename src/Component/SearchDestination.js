@@ -8,7 +8,6 @@ class SearchDestination extends Component {
         <div className="search-engine">
           <form onChange={evt => this.props.onChange(evt)}>
             <input type="text" value={this.props.name} />
-            <button>submit</button>
           </form>
         </div>
       </div>

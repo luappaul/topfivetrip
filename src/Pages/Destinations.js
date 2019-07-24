@@ -54,8 +54,6 @@ class Destination extends Component {
   };
 
   componentDidMount() {
-    // if (this.props.user) this.forceUpdate(() => console.log("yo"));
-    console.log("called before render ????");
     if (this.props.user) {
       axios
         .get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
@@ -128,10 +126,7 @@ class Destination extends Component {
   };
 
   render() {
-    console.log("rendered");
-    // console.log(this.props, "ici");
     if (!this.props.user) return null;
-
     return (
       <div className="destination-page">
         <NavBar />
@@ -143,6 +138,10 @@ class Destination extends Component {
         />
         <br />
         <SearchDestination onChange={this.handleTitle} />
+        <br />
+        <button onClick={() => this.props.history.push("/holidays")}>
+          submit
+        </button>
         <br />
         <div className="btn-container">
           {this.state.result.slice(0, 10).map((one, index) => {

@@ -26,6 +26,9 @@ class Holidays extends Component {
         <NavBar />
         <div className="calendar">
           <AuthConsumer>{({ user }) => <Calendar user={user} />}</AuthConsumer>
+          <button onClick={() => this.props.history.push("/travel")}>
+            submit
+          </button>
         </div>
       </div>
     );

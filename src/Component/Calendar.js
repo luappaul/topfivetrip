@@ -57,7 +57,7 @@ class Calendar extends Component {
     } else {
       this.setState({ dates: newArr });
       Axios.patch(
-        `${process.env.REACT_APP_BACKEND}/api/dates/` + this.state.datesId,
+        `${process.env.REACT_APP_BACKEND}/api/dates/${this.state.datesId}`,
         { dates: this.state.dates }
       )
         .then(res => console.log(res))

@@ -1,21 +1,12 @@
-import React, { Component } from "react";
 import "./UserFavoriteDest.css";
 
-class UserFavoriteDest extends Component {
-  state = {
-    destinations: []
-  };
+import React from "react";
 
-  static getDerivedStateFromProps(props, state) {
-    if (!state.destinations.includes(props.destinations[0]))
-      return props.destinations[0];
-    else return null;
-  }
-
-  render() {
-    return (
-      <div className="destination-result-container">
-        {this.props.destinations.map((one, index) => {
+const UserFavoriteDest = ({ destinations, handleDelete }) => {
+  return (
+    <div className="destination-result-container">
+      {destinations &&
+        destinations.map((one, index) => {
           return (
             <div className="destination-result" key={index}>
               <div>
@@ -24,16 +15,13 @@ class UserFavoriteDest extends Component {
                   alt="img"
                 />
               </div>
-              <div>{one.destinations.toString()}</div>
-              <button onClick={() => this.props.handleDelete(one._id)}>
-                x
-              </button>
+              <div>{one}</div>
+              <button onClick={() => handleDelete(index)}>x</button>
             </div>
           );
         })}
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default UserFavoriteDest;

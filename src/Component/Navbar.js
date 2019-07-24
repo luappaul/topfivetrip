@@ -13,7 +13,6 @@ class NavBar extends Component {
           <Navbar.Brand href="/destinations">TOP 5 TRIP</Navbar.Brand>
           <Nav className="mr-auto">
             <NavLink to="/travel">Travel</NavLink>
-            <NavLink to="/param">Param</NavLink>
             <NavLink to="/holidays">Holidays</NavLink>
             <NavLink to="/destinations">Destinations</NavLink>
 

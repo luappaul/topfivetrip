@@ -15,49 +15,78 @@ class Destination extends Component {
     userResults: []
   };
 
-  handleClick = evt => {
-    evt.preventDefault();
-
-    const dataToSend = evt.target.value;
+  getAllData = () => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND}/api/destinations`, {
-        destinations: dataToSend
-      })
+      .get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
       .then(res => {
-        axios
-          .get(`${process.env.REACT_APP_BACKEND}/api/destinations`)
-          .then(res =>
-            this.setState({
-              userResults: res.data
-            })
-          )
-          .catch(err => console.log(err));
+        console.log(res);
+        this.setState({
+          userResults: res.data.destinations.destinations,
+          destinationsId: res.data.destinations._id
+        });
       })
       .catch(err => console.log(err));
   };
 
+  handleClick = evt => {
+    evt.preventDefault();
+    const dataToSend = evt.target.value;
+
+    if (this.state.destinationsId) {
+      axios
+        .patch(
+          `${
+            process.env.REACT_APP_BACKEND
+          }/api/destinations/updateDestination/${this.state.destinationsId}`,
+          { destinations: dataToSend }
+        )
+        .then(res => {
+          this.getAllData();
+        });
+    } else {
+      axios
+        .post(`${process.env.REACT_APP_BACKEND}/api/destinations`, {
+          destinations: [dataToSend],
+          userId: this.props.user.id
+        })
+        .then(() => this.getAllData());
+    }
+  };
+
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/destinations`)
-      .then(res =>
-        this.setState({
-          userResults: res.data
-        })
-      )
+      .get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
+      .then(res => {
+        if (res.data.destinations) {
+          this.setState({
+            userResults: res.data.destinations.destinations,
+            destinationsId: res.data.destinations._id
+          });
+        }
+      })
       .catch(err => console.log(err));
   }
 
-  handleDelete = id => {
+  handleDelete = index => {
+    const userResults = [...this.state.userResults];
+    userResults.splice(index, 1);
+
     axios
-      .delete(`${process.env.REACT_APP_BACKEND}/api/destinations/` + id)
+      .patch(
+        `${process.env.REACT_APP_BACKEND}/api/destinations/deleteDestination/${
+          this.state.destinationsId
+        }`,
+        { destinations: userResults }
+      )
       .then(res => {
-        const filtered = this.state.userResults.filter(dest => {
-          console.log(dest._id, id);
-          return dest._id !== id;
+        console.log(res);
+        this.setState({
+          userResults
         });
-        this.setState({ userResults: filtered });
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   handleTitle = evt => {
@@ -66,7 +95,6 @@ class Destination extends Component {
         city: evt.target.value
       },
       () => {
-        // wait for the load ...
         this.getData();
       }
     );
@@ -87,20 +115,19 @@ class Destination extends Component {
         <UserFavoriteDest
           destinations={this.state.userResults}
           handleDelete={this.handleDelete}
+          destinationsId={this.state.destinationsId}
         />
         <br />
         <SearchDestination onChange={this.handleTitle} />
         <br />
-
         <div className="btn-container">
           {this.state.result.slice(0, 10).map((one, index) => {
             return (
-              <div className="destination-container">
-                <div key={index} className="btn-containee">
+              <div key={index} className="destination-container">
+                <div className="btn-containee">
                   <ButtonToolbar>
                     <Button
                       variant="outline-primary"
-                      index={index}
                       value={one.City}
                       onClick={this.handleClick}
                     >

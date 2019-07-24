@@ -12,7 +12,6 @@ class Login extends Component {
   handleSubmit = (evt, login) => {
     evt.preventDefault();
     login(status => {
-      console.log(this.props);
       this.props.history.push("/destinations");
     }, this.state);
   };

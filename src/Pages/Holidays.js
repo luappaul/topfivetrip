@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavBar from "../Component/Navbar";
 import Calendar from "../Component/Calendar";
-
+import { AuthConsumer } from "../auth/Guard";
 import "./Holidays.css";
 
 class Holidays extends Component {
@@ -24,7 +24,7 @@ class Holidays extends Component {
       <div className="destination-page">
         <NavBar />
         <div className="calendar">
-          <Calendar />
+          <AuthConsumer>{({ user }) => <Calendar user={user} />}</AuthConsumer>
         </div>
       </div>
     );

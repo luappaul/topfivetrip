@@ -4,11 +4,11 @@ import { AuthConsumer } from "./Guard";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <AuthConsumer>
-    {({ loginStatus }) => (
+    {({ loginStatus, user }) => (
       <Route
         render={props => {
           return loginStatus ? (
-            <Component {...props} />
+            <Component {...props} user={user} />
           ) : (
             <Redirect to="/login" />
           );

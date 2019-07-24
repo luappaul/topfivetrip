@@ -12,18 +12,41 @@ class Travel extends React.Component {
   };
 
   componentDidMount() {
-    Axios.get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
-      .then(res =>
-        this.setState({ destinations: res.data.destinations.destinations })
+    if (this.props.user) {
+      Axios.get(
+        `${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`
       )
-      .catch(err => console.log(err));
-    Axios.get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
-      .then(res => this.setState({ dates: res.data.dates.dates }))
-      .catch(err => console.log(err));
+        .then(res =>
+          this.setState({ destinations: res.data.destinations.destinations })
+        )
+        .catch(err => console.log(err));
+      Axios.get(
+        `${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`
+      )
+        .then(res => this.setState({ dates: res.data.dates.dates }))
+        .catch(err => console.log(err));
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.user) {
+      Axios.get(
+        `${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`
+      )
+        .then(res =>
+          this.setState({ destinations: res.data.destinations.destinations })
+        )
+        .catch(err => console.log(err));
+      Axios.get(
+        `${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`
+      )
+        .then(res => this.setState({ dates: res.data.dates.dates }))
+        .catch(err => console.log(err));
+    }
   }
 
   render() {
-    console.log(this.state);
+    if (!this.props.user) return null;
     return (
       <div>
         <NavBar />

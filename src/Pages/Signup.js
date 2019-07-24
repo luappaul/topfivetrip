@@ -41,7 +41,6 @@ export default class Signup extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-
     if (!this.checkAllFields()) return console.warn("form incomplete");
 
     apiHandler

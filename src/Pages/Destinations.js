@@ -54,17 +54,37 @@ class Destination extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
-      .then(res => {
-        if (res.data.destinations) {
-          this.setState({
-            userResults: res.data.destinations.destinations,
-            destinationsId: res.data.destinations._id
-          });
-        }
-      })
-      .catch(err => console.log(err));
+    // if (this.props.user) this.forceUpdate(() => console.log("yo"));
+    console.log("called before render ????");
+    if (this.props.user) {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
+        .then(res => {
+          if (res.data.destinations) {
+            this.setState({
+              userResults: res.data.destinations.destinations,
+              destinationsId: res.data.destinations._id
+            });
+          }
+        })
+        .catch(err => console.log(err));
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.user) {
+      axios
+        .get(`${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`)
+        .then(res => {
+          if (res.data.destinations) {
+            this.setState({
+              userResults: res.data.destinations.destinations,
+              destinationsId: res.data.destinations._id
+            });
+          }
+        })
+        .catch(err => console.log(err));
+    }
   }
 
   handleDelete = index => {
@@ -108,6 +128,10 @@ class Destination extends Component {
   };
 
   render() {
+    console.log("rendered");
+    // console.log(this.props, "ici");
+    if (!this.props.user) return null;
+
     return (
       <div className="destination-page">
         <NavBar />

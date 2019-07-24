@@ -24,6 +24,7 @@ class Login extends Component {
   };
 
   render() {
+    console.log(this.props.history, "--------------");
     const { handleChange, handleSubmit } = this;
     const { email, password } = this.state;
     return (

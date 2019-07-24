@@ -20,6 +20,7 @@ class Holidays extends Component {
   };
 
   render() {
+    if (!this.props.user) return null;
     return (
       <div className="destination-page">
         <NavBar />

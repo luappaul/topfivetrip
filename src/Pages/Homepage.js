@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import logo from "../img/logo.PNG";
 import "./Homepage.css";
 import { Button, ButtonToolbar } from "react-bootstrap";
-import video from "../img/Beach - 3998.mp4";
 
 class Homepage extends Component {
   state = {

@@ -5,10 +5,6 @@ import "./Homepage.css";
 import { Button, ButtonToolbar } from "react-bootstrap";
 
 class Homepage extends Component {
-  state = {
-    videoURL: video
-  };
-
   render() {
     return (
       <div className="all-page">

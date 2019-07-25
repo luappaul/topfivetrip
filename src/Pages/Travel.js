@@ -8,8 +8,14 @@ class Travel extends React.Component {
   state = {
     user: "",
     dates: [],
-    destinations: []
+    destinations: [],
+    location: ""
   };
+
+  // static getDerivedStateFromProps(newProp, state) {
+  //   console.log("magik 1", newProp);
+  //   return null;
+  // }
 
   componentDidMount() {
     if (this.props.user) {
@@ -24,6 +30,11 @@ class Travel extends React.Component {
         `${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`
       )
         .then(res => this.setState({ dates: res.data.dates.dates }))
+        .catch(err => console.log(err));
+      Axios.get(
+        `${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`
+      )
+        .then(res => this.setState({ location: res.data.location }))
         .catch(err => console.log(err));
     }
   }
@@ -42,6 +53,11 @@ class Travel extends React.Component {
       )
         .then(res => this.setState({ dates: res.data.dates.dates }))
         .catch(err => console.log(err));
+      Axios.get(
+        `${process.env.REACT_APP_BACKEND}/api/user/${this.props.user.id}`
+      )
+        .then(res => this.setState({ location: res.data.location }))
+        .catch(err => console.log(err));
     }
   }
 
@@ -50,15 +66,11 @@ class Travel extends React.Component {
     return (
       <div>
         <NavBar />
-        {this.state ? (
-          <TravelBoard
-            destinations={this.state.destinations}
-            dates={this.state.dates}
-          />
-        ) : (
-          console.log("not yet")
-        )}
-        <DestinationForm />
+        <DestinationForm
+          destinations={this.state.destinations}
+          dates={this.state.dates}
+          location={this.state.location}
+        />
       </div>
     );
   }

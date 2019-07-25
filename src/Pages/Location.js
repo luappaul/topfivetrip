@@ -24,24 +24,23 @@ class Result extends Component {
 
   render() {
     if (!this.props) return null;
-    console.log(this.props.history);
     return (
       <div className="location-page">
         <NavBar />
         <div className="location-container">
           <h2>Where are you from ?</h2>
           <div>
-            <button value="Paris" onClick={this.handleClick}>
+            <button value="PARI-sky" onClick={this.handleClick}>
               Paris, France
             </button>
           </div>
           <div>
-            <button value="Barcelona" onClick={this.handleClick}>
+            <button value="BCN-sky" onClick={this.handleClick}>
               Barcelona, Spain
             </button>
           </div>
           <div>
-            <button value="London" onClick={this.handleClick}>
+            <button value="LOND-sky" onClick={this.handleClick}>
               London, UK
             </button>
           </div>

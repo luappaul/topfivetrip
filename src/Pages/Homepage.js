@@ -3,23 +3,20 @@ import { NavLink } from "react-router-dom";
 import logo from "../img/logo.PNG";
 import "./Homepage.css";
 import { Button, ButtonToolbar } from "react-bootstrap";
+import video from "../img/Beach - 3998.mp4";
 
 class Homepage extends Component {
+  state = {
+    videoURL: video
+  };
+
   render() {
     return (
-      <div className="top-container">
-        <div className="sub-container">
+      <div className="all-page">
+        <div className="header">
           <div className="logo">
             <img src={logo} alt="logo" className="responsive" />
           </div>
-
-          <div className="baseline">
-            <h3>
-              Imagine... Booking your next trip at the best possible price in as
-              many clicks as your last Amazon purchase
-            </h3>
-          </div>
-          <br />
           <div className="direction-container">
             <ButtonToolbar className="directions">
               <NavLink to="/signup">
@@ -35,6 +32,28 @@ class Homepage extends Component {
             </ButtonToolbar>
           </div>
         </div>
+        <div className="mid-container">
+          <div className="baseline">
+            <h3>
+              Imagine... <br /> Booking your next trip at the best possible
+              price <br /> in as many clicks as your last Amazon purchase
+            </h3>
+          </div>
+          <div className="video">
+            <video autoPlay muted loop>
+              <source
+                src="https://res.cloudinary.com/dfbmzsyx7/video/upload/v1563122303/There_app/coverr-waves-and-sand-1561484040281_xtzyrz.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="https://res.cloudinary.com/dfbmzsyx7/video/upload/v1563122303/There_app/coverr-waves-and-sand-1561484040281_xtzyrz.mp4"
+                type="video/ogg"
+              />
+            </video>
+          </div>
+        </div>
+
+        <br />
       </div>
     );
   }

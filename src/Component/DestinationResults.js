@@ -277,7 +277,7 @@ class DestinationResult extends Component {
           <tbody>
             <tr>
               <th>
-                {moment(this.props.infos.inboundpartialdateOne).format(
+                {moment(this.props.infos.outboundpartialdateOne).format(
                   "YYYY-MM-DD"
                 )}
               </th>
@@ -287,7 +287,7 @@ class DestinationResult extends Component {
             </tr>
             <tr>
               <th>
-                {moment(this.props.infos.inboundpartialdateTwo).format(
+                {moment(this.props.infos.outboundpartialdateTwo).format(
                   "YYYY-MM-DD"
                 )}
               </th>
@@ -297,7 +297,7 @@ class DestinationResult extends Component {
             </tr>
             <tr>
               <th>
-                {moment(this.props.infos.inboundpartialdateThree).format(
+                {moment(this.props.infos.outboundpartialdateThree).format(
                   "YYYY-MM-DD"
                 )}
               </th>

@@ -1,16 +1,23 @@
 .calendar {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 }
 
-/* .calendar-container {
+.calendar-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: baseline;
 }
 
-.calendar {
-  margin: 10px;
-  flex-basis: 30%;
-  text-align: -webkit-center;
-} */
+.btn-param {
+  margin: 2vw auto 2vw;
+}
+
+.mobiscroll-container {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.calendar-page {
+  width: 100wv;
+}

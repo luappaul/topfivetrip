@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { AuthConsumer } from "./../auth/Guard";
 import "./Login.css";
 import logo from "../img/logo.PNG";
+import { Button, ButtonToolbar, Form, Col, FormLabel } from "react-bootstrap";
 
 class Login extends Component {
   state = {
@@ -24,7 +25,6 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props.history, "--------------");
     const { handleChange, handleSubmit } = this;
     const { email, password } = this.state;
     return (
@@ -34,26 +34,40 @@ class Login extends Component {
         </div>
         <AuthConsumer>
           {({ login }) => (
-            <form
+            <Form
               className="form"
               onSubmit={evt => handleSubmit(evt, login)}
               onChange={handleChange}
             >
-              <h1>Login</h1>
-              <label htmlFor="email">email</label>
-              <input type="email" defaultValue={email} name="email" />
-              <label htmlFor="password">password</label>
-              <input
-                type="text"
-                defaultValue={password}
-                name="password"
-                id="password"
-              />
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridEmail">
+                  <Form.Label htmlFor="email">email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    defaultValue={email}
+                    name="email"
+                  />
+                </Form.Group>
+                <Form.Group as={Col} controlId="formGridEmail">
+                  <Form.Label htmlFor="password">password</Form.Label>
+                  <Form.Control
+                    type="text"
+                    defaultValue={password}
+                    name="password"
+                    id="password"
+                  />
+                </Form.Group>
+              </Form.Row>
               <br />
               <br />
-
-              <button>Log In</button>
-            </form>
+              <Button
+                variant="outline-dark"
+                className="btn"
+                onClick={evt => handleSubmit(evt, login)}
+              >
+                Log In
+              </Button>
+            </Form>
           )}
         </AuthConsumer>
       </div>

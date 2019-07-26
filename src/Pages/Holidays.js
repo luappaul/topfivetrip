@@ -3,6 +3,7 @@ import NavBar from "../Component/Navbar";
 import Calendar from "../Component/Calendar";
 import { AuthConsumer } from "../auth/Guard";
 import "./Holidays.css";
+import { Button } from "react-bootstrap";
 
 class Holidays extends Component {
   constructor(props) {
@@ -26,9 +27,9 @@ class Holidays extends Component {
         <NavBar />
         <div className="calendar">
           <AuthConsumer>{({ user }) => <Calendar user={user} />}</AuthConsumer>
-          <button onClick={() => this.props.history.push("/travel")}>
+          <Button onClick={() => this.props.history.push("/travel")}>
             submit
-          </button>
+          </Button>
         </div>
       </div>
     );

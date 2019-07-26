@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import NavBar from "../Component/Navbar";
 import SearchDestination from "../Component/SearchDestination";
 import barcelona from "../img/barcelona.jpg";
 
 import "./Destinations.css";
-import { ButtonToolbar, Button } from "react-bootstrap";
+import { ButtonToolbar, Button, Card, CardDeck } from "react-bootstrap";
 import UserFavoriteDest from "../Component/UserFavoriteDest";
 
 class Destination extends Component {
@@ -129,39 +128,43 @@ class Destination extends Component {
     if (!this.props.user) return null;
     return (
       <div className="destination-page">
-        <NavBar />
-        <br />
-        <UserFavoriteDest
-          destinations={this.state.userResults}
-          handleDelete={this.handleDelete}
-          destinationsId={this.state.destinationsId}
-        />
-        <br />
-        <SearchDestination onChange={this.handleTitle} />
-        <br />
-        <button onClick={() => this.props.history.push("/holidays")}>
-          submit
-        </button>
-        <br />
+        <div className="user-faborite-dest">
+          <UserFavoriteDest
+            destinations={this.state.userResults}
+            handleDelete={this.handleDelete}
+            destinationsId={this.state.destinationsId}
+          />
+        </div>
+        <div className="search-destination">
+          <SearchDestination onChange={this.handleTitle} />
+          <Button
+            variant="outline-dark"
+            style={{ width: "50vw" }}
+            onClick={() => this.props.history.push("/holidays")}
+          >
+            submit
+          </Button>
+        </div>
         <div className="btn-container">
           {this.state.result.slice(0, 10).map((one, index) => {
             return (
-              <div key={index} className="destination-container">
-                <div className="btn-containee">
-                  <ButtonToolbar>
-                    <Button
-                      variant="outline-primary"
-                      value={one.City}
-                      onClick={this.handleClick}
-                    >
-                      {one.City}, {one.IATA}
-                    </Button>
-                  </ButtonToolbar>
-                  <div className="dest-icon">
-                    <img src={barcelona} alt="logo" />
-                  </div>
-                </div>
-              </div>
+              <Card
+                style={{ width: "25vw", margin: "2vw" }}
+                key={index}
+                className="destination-container"
+              >
+                <ButtonToolbar>
+                  <Button
+                    variant="outline-dark"
+                    value={one.City}
+                    onClick={this.handleClick}
+                  >
+                    {one.City}, {one.IATA}
+                  </Button>
+                </ButtonToolbar>
+
+                <Card.Img src={barcelona} alt="logo" />
+              </Card>
             );
           })}
         </div>

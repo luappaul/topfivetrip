@@ -6,6 +6,10 @@
   align-items: center;
 }
 
+.user-faborite-dest {
+  height: 35vh;
+}
+
 .btn-containee {
   margin: 10px;
   width: 100%;
@@ -17,7 +21,6 @@
 
 .destination-container {
   width: 30%;
-
   margin: 5px;
   height: 400px;
 }
@@ -25,4 +28,12 @@
 .dest-icon img {
   width: 90%;
   height: 100%;
+}
+
+.search-destination {
+  top: 10px;
+}
+
+.destination-page {
+  width: 98vw;
 }

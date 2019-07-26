@@ -1,14 +1,23 @@
 import React, { Component } from "react";
+import { InputGroup, Form } from "react-bootstrap";
 
 class SearchDestination extends Component {
   render() {
     return (
-      <div>
-        <p>Search your destination</p>
+      <div className="search-destination">
         <div className="search-engine">
-          <form onChange={evt => this.props.onChange(evt)}>
-            <input type="text" value={this.props.name} />
-          </form>
+          <InputGroup
+            style={{ width: "50vw", margin: "0 auto" }}
+            size="lg"
+            onChange={evt => this.props.onChange(evt)}
+          >
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroup-sizing-lg">
+                Find your Dest
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control type="text" value={this.props.name} />
+          </InputGroup>
         </div>
       </div>
     );

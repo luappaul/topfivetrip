@@ -3,8 +3,16 @@
   margin: 0 auto;
 }
 
+label {
+  float: left;
+}
+
 .logo img {
   width: 20%;
+}
+
+.btn {
+  margin: 10px;
 }
 
 .top-container {

@@ -33,6 +33,7 @@ class Homepage extends Component {
               Imagine... <br /> Booking your next trip at the best possible
               price <br /> in as many clicks as your last Amazon purchase
             </h3>
+            {/* <Button variant="outline-dark">How does it work</Button> */}
           </div>
           <div className="video">
             <video autoPlay muted loop>

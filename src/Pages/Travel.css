@@ -1,0 +1,20 @@
+.table-destination-result {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.button-result {
+  margin: 5vw;
+}
+
+.button-result button {
+  width: 30vw !important;
+}
+
+.result-table-quote {
+  margin: 0 auto 5vw;
+}
+
+.result-table-algo {
+  margin: 5vw auto;
+}

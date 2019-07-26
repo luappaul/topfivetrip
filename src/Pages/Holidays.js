@@ -23,7 +23,7 @@ class Holidays extends Component {
   render() {
     if (!this.props.user) return null;
     return (
-      <div className="destination-page">
+      <div className="calendar-page">
         <NavBar />
         <div className="calendar">
           <AuthConsumer>{({ user }) => <Calendar user={user} />}</AuthConsumer>
